@@ -154,7 +154,7 @@ eclipse.preferences.version=1
             <dependency>
               <groupId>net.sf.saxon</groupId>
               <artifactId>Saxon-HE</artifactId>
-              <version>10.3</version>
+              <version>11.4</version>
             </dependency>
 
 

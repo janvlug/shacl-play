@@ -62,7 +62,7 @@ public class ShapesDocumentationJacksonXsltWriter implements ShapesDocumentation
 	        //TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	        //TransformerFactory.setAttribute("indent-number", 2);
 	        
-	        Source xsltInput = new StreamSource(this.getClass().getClassLoader().getResourceAsStream("doc2html.xsl"));
+	        Source xsltInput = new StreamSource(this.getClass().getClassLoader().getResourceAsStream("doc2html_transposed.xsl"));
 	        Transformer transformer = transformerFactory.newTransformer(xsltInput); 
 	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 	        

@@ -9,6 +9,8 @@ import org.apache.jena.rdf.model.RDFList;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.topbraid.shacl.vocabulary.SH;
+import nl.overheid.koop.conmod.skos.SKOS;
+import nl.overheid.koop.conmod.tooi.Tooiont;
 
 public class PropertyShapeReader {
 	
@@ -24,6 +26,8 @@ public class PropertyShapeReader {
 	public PropertyShape read(Resource constraint) {
 
 		PropertyShape shaclProperty = new PropertyShape(constraint);
+		
+		shaclProperty.setLocalName (constraint.getLocalName());
 
 		shaclProperty.setShPath(this.readShPath(constraint));
 		shaclProperty.setShDatatype(this.readShDatatype(constraint));
@@ -39,6 +43,10 @@ public class PropertyShapeReader {
 		shaclProperty.setShValue(this.readShValue(constraint));
 		shaclProperty.setShOrder(this.readShOrder(constraint));
 		shaclProperty.setShOr(this.readShOr(constraint));
+		shaclProperty.setSkosDefinition(this.readSkosDefinition(constraint));
+		shaclProperty.setSkosScopeNote(this.readSkosScopeNote(constraint));
+		shaclProperty.setTooiFrbrScope(this.readTooiFrbrScope(constraint));
+		shaclProperty.setTooiCategorie(this.readTooiCategorie(constraint));		
 		
 		return shaclProperty;
 	}
@@ -90,6 +98,22 @@ public class PropertyShapeReader {
 
 	public List<Literal> readName(Resource constraint) {
 		return ConstraintValueReader.readLiteralInLang(constraint, SH.name, this.lang);
+	}
+	
+	public List<Literal> readSkosDefinition(Resource constraint) {
+		return ConstraintValueReader.readLiteralInLang(constraint, SKOS.definition, this.lang);
+	}
+	
+	public List<Literal> readSkosScopeNote(Resource constraint) {
+		return ConstraintValueReader.readLiteralInLang(constraint, SKOS.scopeNote, this.lang);
+	}
+	
+	public List<Literal> readTooiFrbrScope(Resource constraint) {
+		return ConstraintValueReader.readLiteralInLang(constraint, Tooiont.frbrscope, this.lang);
+	}
+	
+	public List<Literal> readTooiCategorie(Resource constraint) {
+		return ConstraintValueReader.readLiteralInLang(constraint, Tooiont.categorie, this.lang);
 	}
 
 	public List<Literal> readDescription(Resource constraint) {

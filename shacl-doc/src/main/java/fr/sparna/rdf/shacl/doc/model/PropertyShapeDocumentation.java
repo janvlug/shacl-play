@@ -13,6 +13,13 @@ public class PropertyShapeDocumentation {
 
 	private String cardinalite;
 	private String description;
+	private String rangeclass;
+	private String skosScopeNote;
+	private String skosDefinition;
+	private String tooiFrbrScope;
+	private String tooiCategorie;
+	private String localName;
+
 	private String Or;
 
 	private String linkNodeShape;
@@ -78,9 +85,57 @@ public class PropertyShapeDocumentation {
 	public String getDescription() {
 		return description;
 	}
+	
+	public String getSkosScopeNote() {
+		return skosScopeNote;
+	}
+	
+	public String getTooiFrbrScope() {
+		return tooiFrbrScope;
+	}
+	
+	public String getTooiCategorie() {
+		return tooiCategorie;
+	}
+	
+	public String getLocalName() {
+		return localName;
+	}
+	
+	public String getSkosDefinition() {
+		return skosDefinition;
+	}
+	
+	public String getRangeClass() {
+		return rangeclass;
+	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void setSkosScopeNote(String skosScopeNote) {
+		this.skosScopeNote = skosScopeNote;
+	}
+	
+	public void setSkosDefinition(String skosDefinition) {
+		this.skosDefinition = skosDefinition;
+	}
+	
+	public void setTooiFrbrScope(String tooiFrbrScope) {
+		this.tooiFrbrScope = tooiFrbrScope;
+	}
+	
+	public void setTooiCategorie(String tooiCategorie) {
+		this.tooiCategorie = tooiCategorie;
+	}
+	
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+	
+	public void setRangeClass(String rangeclass) {
+		this.rangeclass = rangeclass;
 	}
 
 	public String getLinkNodeShape() {

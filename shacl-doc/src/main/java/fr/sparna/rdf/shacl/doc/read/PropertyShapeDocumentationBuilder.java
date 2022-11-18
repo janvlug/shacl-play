@@ -86,6 +86,12 @@ public class PropertyShapeDocumentationBuilder {
 		proprieteDoc.setExpectedValueAdditionnalInfoIn(render(propertyShape.getShIn(), false));
 		proprieteDoc.setCardinalite(renderCardinalities(propertyShape.getShMinCount(), propertyShape.getShMaxCount()));
 		proprieteDoc.setDescription(selectDescription(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setSkosScopeNote(selectSkosScopeNote(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setSkosDefinition(selectSkosDefinition(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setRangeClass(selectShClass(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setTooiFrbrScope(selectTooiFrbrScope(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setTooiCategorie(selectTooiCategorie(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setLocalName(propertyShape.getLocalName());
 		
 		// create a String of comma-separated short forms
 		proprieteDoc.setOr(render(propertyShape.getShOr(), false));
@@ -109,6 +115,64 @@ public class PropertyShapeDocumentationBuilder {
 		// if we have a sh:description, take it
 		if(prop.getShDescription() != null) {
 			return render(prop.getShDescription(), true);
+		} else if(prop.getShPath().isURIResource()) {
+			// otherwise if we have rdfs:comment on the property, take it
+			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);
+		} else {
+			return null;
+		}
+	}
+	
+	public static String selectSkosScopeNote(PropertyShape prop, Model owlModel, String lang) {
+		// if we have a sh:description, take it
+		if(prop.getSkosScopeNote() != null) {
+			return render(prop.getSkosScopeNote(), true);
+		} else if(prop.getShPath().isURIResource()) {
+			// otherwise if we have rdfs:comment on the property, take it
+			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);
+		} else {
+			return null;
+		}
+	}
+	
+	public static String selectSkosDefinition(PropertyShape prop, Model owlModel, String lang) {
+		// if we have a sh:description, take it
+		if(prop.getSkosDefinition() != null) {
+			return render(prop.getSkosDefinition(), true);
+		} else if(prop.getShPath().isURIResource()) {
+			// otherwise if we have rdfs:comment on the property, take it
+			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);
+		} else {
+			return null;
+		}
+	}
+	
+	public static String selectTooiFrbrScope(PropertyShape prop, Model owlModel, String lang) {
+		if(prop.getTooiFrbrScope() != null) {
+			return render(prop.getTooiFrbrScope(), true);
+		} else if(prop.getShPath().isURIResource()) {
+			// otherwise if we have rdfs:comment on the property, take it
+			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);
+		} else {
+			return null;
+		}
+	}
+	
+	public static String selectTooiCategorie(PropertyShape prop, Model owlModel, String lang) {
+		// if we have a sh:description, take it
+		if(prop.getTooiCategorie() != null) {
+			return render(prop.getTooiCategorie(), true);
+		} else if(prop.getShPath().isURIResource()) {
+			// otherwise if we have rdfs:comment on the property, take it
+			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);
+		} else {
+			return null;
+		}
+	}
+	
+	public static String selectShClass(PropertyShape prop, Model owlModel, String lang) {
+		if(prop.getShClass() != null) {
+			return render(prop.getShClass(), true);
 		} else if(prop.getShPath().isURIResource()) {
 			// otherwise if we have rdfs:comment on the property, take it
 			return render(ConstraintValueReader.readLiteralInLang(owlModel.getResource(prop.getShPath().getURI()), RDFS.comment, lang), true);

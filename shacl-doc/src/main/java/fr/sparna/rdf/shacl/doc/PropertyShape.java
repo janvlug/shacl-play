@@ -27,10 +27,15 @@ public class PropertyShape {
 	protected Resource shNode;
 	protected Resource shClass;
 	protected List<Literal> shName;
+	protected List<Literal> skosDefinition;
+	protected List<Literal> skosScopeNote;
+	protected List<Literal> tooiFrbrScope;
+	protected List<Literal> tooiCategorie;
 	protected List<Literal> shDescription;
 	protected List<RDFNode> shIn;
 	protected Integer shOrder;
 	protected RDFNode shValue;
+	protected String localName;
 	
 	protected List<Resource> shOr;	
 	
@@ -112,6 +117,30 @@ public class PropertyShape {
 	public void setShName(List<Literal> shName) {
 		this.shName = shName;
 	}
+	public List<Literal> getSkosDefinition() {
+		return skosDefinition;
+	}
+	public  void setSkosDefinition(List<Literal> skosDefinition) {
+		this.skosDefinition = skosDefinition;
+	}
+	public List<Literal> getSkosScopeNote() {
+		return skosScopeNote;
+	}
+	public  void setSkosScopeNote(List<Literal> skosScopeNote) {
+		this.skosScopeNote = skosScopeNote;
+	}
+	public List<Literal> getTooiFrbrScope() {
+		return tooiFrbrScope;
+	}
+	public  void setTooiFrbrScope(List<Literal> tooiFrbrScope) {
+		this.tooiFrbrScope = tooiFrbrScope;
+	}
+	public List<Literal> getTooiCategorie() {
+		return tooiCategorie;
+	}
+	public  void setTooiCategorie(List<Literal> tooiCategorie) {
+		this.tooiCategorie = tooiCategorie;
+	}
 	public List<Literal> getShDescription() {
 		return shDescription;
 	}
@@ -135,6 +164,12 @@ public class PropertyShape {
 	}
 	public void setShValue(RDFNode shValue) {
 		this.shValue = shValue;
+	}
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+	public String getLocalName() {
+		return localName;
 	}
 	
 	/**
