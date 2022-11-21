@@ -853,7 +853,8 @@
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 	<xsl:value-of select="$correctfn"/>
-			<xsl:result-document href="{$correctfn}">
+	
+	<xsl:result-document href="{$correctfn}" method="html">
 	
 <!-- 	<xsl:result-document href="$fullfilename" > -->
 	    <h3>Property Shape: <xsl:value-of select="localName" /></h3>
