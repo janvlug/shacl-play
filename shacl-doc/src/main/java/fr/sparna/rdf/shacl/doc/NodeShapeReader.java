@@ -35,6 +35,7 @@ public class NodeShapeReader {
 		ns.setShClosed(this.readShClosed(nodeShape));
 		ns.setShOrder(this.readShOrder(nodeShape));
 		ns.setSkosExample(this.readSkosExample(nodeShape));
+		ns.setSkosNote(this.readSkosNote(nodeShape));
 		
 		ns.setRdfsSubClassOf(this.readRdfsSubClassOf(nodeShape));
 		
@@ -70,6 +71,10 @@ public class NodeShapeReader {
 		return ConstraintValueReader.readLiteralInLangAsString(nodeShape, RDFS.comment, this.lang);
 	}
 
+	public String readSkosNote(Resource nodeShape) {
+		return ConstraintValueReader.readLiteralInLangAsString(nodeShape, SKOS.note, this.lang);
+	}
+	
 	public Resource readShTargetClass(Resource nodeShape) {
 		return Optional.ofNullable(nodeShape.getProperty(SH.targetClass)).map(s -> s.getResource()).orElse(null);
 	}
