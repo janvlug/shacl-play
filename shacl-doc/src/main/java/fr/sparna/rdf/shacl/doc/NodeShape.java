@@ -15,6 +15,7 @@ public class NodeShape {
 	protected Literal shPattern;
 	protected Resource shTargetClass;
 	protected String rdfsComment;
+	protected String skosSkosNote;
 	protected String rdfsLabel;
 	protected Integer shOrder;
 	protected Resource shNodeKind;
@@ -76,6 +77,10 @@ public class NodeShape {
 
 	public void setRdfsComment(String rdfsComment) {
 		this.rdfsComment = rdfsComment;
+	}
+	
+	public void setSkosNote(String skosSkosNote) {
+		this.skosSkosNote = skosSkosNote;
 	}
 
 	public String getRdfsLabel() {
