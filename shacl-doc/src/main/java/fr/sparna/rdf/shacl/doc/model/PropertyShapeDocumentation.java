@@ -19,6 +19,7 @@ public class PropertyShapeDocumentation {
 	private String tooiFrbrScope;
 	private String tooiCategorie;
 	private String localName;
+	private String shName;
 
 	private String Or;
 
@@ -102,6 +103,10 @@ public class PropertyShapeDocumentation {
 		return localName;
 	}
 	
+	public String getShName() {
+		return shName;
+	}
+	
 	public String getSkosDefinition() {
 		return skosDefinition;
 	}
@@ -132,6 +137,10 @@ public class PropertyShapeDocumentation {
 	
 	public void setLocalName(String localName) {
 		this.localName = localName;
+	}
+	
+	public void setShName(String shName) {
+		this.shName = shName;
 	}
 	
 	public void setRangeClass(String rangeclass) {

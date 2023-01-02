@@ -15,7 +15,9 @@ public class NodeShape {
 	protected Literal shPattern;
 	protected Resource shTargetClass;
 	protected String rdfsComment;
-	protected String skosSkosNote;
+	protected String skosDefinition;
+	protected String skosNote;
+	protected String skosScopeNote;
 	protected String rdfsLabel;
 	protected Integer shOrder;
 	protected Resource shNodeKind;
@@ -24,8 +26,6 @@ public class NodeShape {
 	protected List<Resource> rdfsSubClassOf;
 	
 	protected List<PropertyShape> properties = new ArrayList<>();
-	
-	
 	
 	public RDFNode getSkosExample() {
 		return skosExample;
@@ -79,8 +79,28 @@ public class NodeShape {
 		this.rdfsComment = rdfsComment;
 	}
 	
-	public void setSkosNote(String skosSkosNote) {
-		this.skosSkosNote = skosSkosNote;
+	public String getSkosDefinition() {
+		return skosDefinition;
+	}
+	
+	public void setSkosDefinition(String skosDefinition) {
+		this.skosDefinition = skosDefinition;
+	}
+	
+	public String getSkosNote() {
+		return skosNote;
+	}
+	
+	public void setSkosNote(String skosNote) {
+		this.skosNote = skosNote;
+	}
+	
+	public String getSkosScopeNote() {
+		return skosScopeNote;
+	}
+	
+	public void setSkosScopeNote(String skosScopeNote) {
+		this.skosScopeNote = skosScopeNote;
 	}
 
 	public String getRdfsLabel() {

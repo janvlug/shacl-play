@@ -128,250 +128,6 @@
 		<html lang="{$LANG}">
 			<head>
 				
-				<style>
-					body {
-						margin: 0;
-						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-							"Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
-							"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-							"Noto Color Emoji";
-						background-color: #fff;
-					}
-					
-					.anchor {
-						float: left;
-						padding-right: 4px;
-						margin-left: -20px;
-						line-height: 1;
-						padding-top: 12px;
-					}
-							
-					a {
-						color: #007bff;
-						text-decoration: none;
-						background-color: transparent;
-					}
-					
-					a:-webkit-any-link {
-						cursor: pointer;
-					}
-					
-					.p {
-						font-size: 0.875em;
-					}
-					
-					h2 {margin: 25px 0px 10px 0px;}
-					
-					@media only print {
-					}
-					
-					@page {
-						size: A4 portrait;
-						margin-top: 1.2cm;
-						margin-bottom: 1.2cm;
-						margin-left: 1.2cm;
-						margin-right: 1.2cm;
-						background-repeat: no-repeat;
-						background-position: 40px 10px;
-						
-						@bottom-center
-						{
-						content
-						:
-						counter(
-						page
-						);
-					}
-					
-					}
-							
-					/* This section draw the format web */
-					.ul_type_none {
-						list-style-type: none;
-					}
-					
-					.sp_list_description_properties ul {
-						display: block;
-						list-style-type: disc;
-						margin-block-start: 1em;
-						margin-block-end: 1em;
-						margin-inline-start: 0px;
-						margin-inline-end: 0px;
-						padding-inline-start: 40px;
-					}
-					
-					dl, ol, ul {
-						margin-top: 0;
-						margin-bottom: 1rem;
-					}
-					
-					li {
-						display: list-item;
-						text-align: -webkit-match-parent;
-					}
-							
-					.sp_ul {
-						list-style-type: disc;
-					}
-					
-					.sp_section_title_header {
-						margin-top: 0;
-						margin-bottom: 2.5rem !important;
-						margin-block-start: 0.67em;
-					    margin-block-end: 0.67em;
-					    margin-inline-start: 0px;
-					    margin-inline-end: 0px;    
-					}
-					
-					.sp_section_title_header {
-					    font-size: 1.5625rem;
-					}
-					
-					
-					.sp_section_subtitle {
-						margin-top: 0;
-					}
-					
-					.sp_section_subtitle ,.sp_section_title_table {
-						margin-block-start: 0.83em;
-					    margin-block-end: 0.83em;
-					    margin-inline-start: 0px;
-					    margin-inline-end: 0px;    
-					}
-							
-					.sp_section_title_header, .sp_section_subtitle, .sp_section_title_table {
-						margin-bottom: 0.5rem;
-						display: block;
-						font-weight: 500;
-						color: #1e1e1f;
-						line-height: 1.2em;
-					}
-					
-					.sp_section_title_header, 
-						.sp_section_title_toc, 
-						.sp_section_title_table, 
-						.sp_section_subtitle {
-						font-family: Georgia, Garamond, serif;	
-					}	
-					 
-					table {
-						display: table;
-						border-spacing: 0px;
-						margin-botton: 1rem;
-					}
-					
-					tr:nth-child(even) {
-						background-color: #eee;
-					}
-							
-					.sp_table_prefixes table {
-						border-collapse: collapse;
-						margin-bottom: 1rem;
-						color: #212529;
-					}
-											
-					.sp_table_prefixes td {
-						padding: 0.25rem;
-						vertical-align: top;
-						border-top: 1px solid #dee2e6;
-					}
-					
-					.sp_table_propertyshapes {
-						border-collapse: collapse;
-						width: 100%;
-					}
-										
-					.sp_table_propertyshapes thead {
-						display: table-header-group;
-						vertical-align: middle;
-						border-color: inherit;
-					}
-													
-					.sp_table_propertyshapes tr {
-					    display: table-row;
-					    vertical-align: inherit;
-					    border-color: inherit;
-					}
-													
-					.sp_table_propertyshapes th:nth-child(4) {
-						width: 6%;
-					}
-													
-					.sp_table_propertyshapes td {
-						padding: 0.75rem;
-						border-top: 1px solid #dee2e6;
-					}
-													
-					.sp_table_propertyshapes tbody {
-						display: table-row-group;
-						vertical-align: middle;
-						border-color: inherit;
-					}
-										
-					.sp_table_propertyshapes_col_description {
-						word-break: break-word;
-					}
-					
-					.sp_serialization_badge {
-						margin-right: 0.5em;
-					}
-							
-					<xsl:choose>
-						<xsl:when test="$MODE = 'PDF'">
-							.toc { }
-							.sp_section_title_toc {
-								margin-block-start: 0.83em;
-							    margin-block-end: 0.83em;
-							    margin-inline-start: 0px;
-							    margin-inline-end: 0px;    
-							}
-									
-							.sp_section_title_toc {
-								margin-bottom: 0.5rem;
-								display: block;
-								font-weight: 500;
-								color: #1e1e1f;
-								line-height: 1.2em;
-							}
-							
-							.sp_container_principal {
-										width: calc(100% - 40px);
-										max-width: 1000px;
-										margin-left: auto;
-										margin-right: auto;
-							}
-							
-							.pt-4 {
-								padding-top: 2.5rem !important;
-							}
-						</xsl:when>
-						<xsl:otherwise>
-							.container {
-							    width: calc(100% - 40px);
-							    max-width: 1000px;
-							    margin-left: auto;
-							    margin-right: auto;
-							}
-							.container {width: calc(100% - 500px);}
-							.toc {
-								position: fixed;
-								top: 0;
-								left: 0;
-								font-size: small;
-								padding: 10px 20px;
-								width: auto;
-								border-right: solid 2px #eeeeee;
-								bottom: 0;
-								overflow-y: scroll;
-								background-color:white;
-							}
-							.sp_list_toc {padding-left: 0px;}							
-						</xsl:otherwise>
-					</xsl:choose>
-					
-				</style>
-				
-				
 				<meta charset="UTF-8"/>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 				<meta name="lang" content="{$LANG}"/>
@@ -446,16 +202,6 @@
 					<xsl:apply-templates select="sections" />
 				</div>
 				
-				
-				<!-- Anchor for the document -->
-				<script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">//</script>
-    			<script>				
-					anchors.options = {
-	                    icon: '#'
-	                  };
-               		anchors.options.placement = 'left';
-					anchors.add();		
-				</script>				
 			</body>
 		</html>
 	</xsl:template>
@@ -759,84 +505,116 @@
 	</xsl:template>
 	
 	<xsl:template match="section">
-		<xsl:variable name="TitleNodeSape" select="uri" />
-		<div class="row mt-3">
-			<div class="col">
-				<section id="{$TitleNodeSape}">
-					<h2 class="sp_section_title_table">
-						<xsl:value-of select="title" />
-					</h2>
-					<xsl:if test="description != ''">
-						<p>
-							<!--  disable output escaping so that HTML is preserved -->
-							<em><xsl:value-of select="description" disable-output-escaping="yes" /></em>
-						</p>
-					</xsl:if>
-					<xsl:if
-						test="targetClassLabel != '' or superClasses/link or nodeKind != '' or pattern != '' or closed='true' or skosExample != ''">
-						<ul class="sp_list_description_properties sp_ul">
-							<xsl:if test="targetClassLabel != ''">
-								<li>
-									<xsl:value-of
-										select="$LABELS/labels/entry[@key='LABEL_TARGETCLASS']/@label" />
-									<a href="{targetClassUri}">
-										<xsl:value-of select="targetClassLabel" />
-									</a>
-								</li>
-							</xsl:if>
-							<xsl:if test="superClasses/link">
-								<li>
-									<xsl:value-of
-										select="$LABELS/labels/entry[@key='LABEL_SUPERCLASSES']/@label" />
-									<xsl:for-each select="superClasses/link">
-										<xsl:choose>
-											<xsl:when test="position() = 1">
-								                <a href="{href}"><xsl:value-of select="label" /></a>
-								            </xsl:when>
-								            <xsl:otherwise>
-								                , <a href="{href}"><xsl:value-of select="label" /></a>
-								            </xsl:otherwise>
-										</xsl:choose>
-									</xsl:for-each>
-								</li>
-							</xsl:if>
-							<xsl:if test="closed='true'">
-								<li>
-									<xsl:value-of
-										select="$LABELS/labels/entry[@key='LABEL_CLOSE']/@label" />
-								</li>
-							</xsl:if>
-							<xsl:if test="nodeKind != ''">
-								<li>
-									<xsl:value-of
-										select="$LABELS/labels/entry[@key='LABEL_NODEKIND']/@label" />
-									<xsl:value-of select="nodeKind" />
-								</li>
-							</xsl:if>
+	<xsl:variable name="filename" select="title" />
+	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
+	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
+	
+	<xsl:result-document href="{$correctfn}" method="html">
+		<h3>Klasse: <xsl:value-of select="uri"/></h3>
+		<table>
+			<tr>
+				<td>Label</td>
+				<td><xsl:value-of select="title"/></td>
+			</tr>
+			<xsl:if test="skosDefinition != ''">
+				<tr>
+					<td>Definitie</td>
+					<td><xsl:value-of select="skosDefinition"/></td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="superClasses/link">
+				<tr>
+					<td>Subklasse van</td>
+					<td><xsl:call-template name="superclasses"/></td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="skosScopeNote != ''">
+				<tr>
+					<td>Toelichting</td>
+					<td><xsl:value-of select="skosScopeNote"/></td>
+				</tr>
+			</xsl:if>
+		</table>
+	
+<!-- 		<xsl:variable name="TitleNodeSape" select="uri" /> -->
+<!-- 		<div class="row mt-3"> -->
+<!-- 			<div class="col"> -->
+<!-- 				<section id="{$TitleNodeSape}"> -->
+<!-- 					<h2 class="sp_section_title_table"> -->
+<!-- 						<xsl:value-of select="title" /> -->
+<!-- 					</h2> -->
+<!-- 					<xsl:if test="description != ''"> -->
+<!-- 						<p> -->
+<!-- 							 disable output escaping so that HTML is preserved -->
+<!-- 							<em><xsl:value-of select="description" disable-output-escaping="yes" /></em> -->
+<!-- 						</p> -->
+<!-- 					</xsl:if> -->
+<!-- 					<xsl:if -->
+<!-- 						test="targetClassLabel != '' or superClasses/link or nodeKind != '' or pattern != '' or closed='true' or skosExample != ''"> -->
+<!-- 						<ul class="sp_list_description_properties sp_ul"> -->
+<!-- 							<xsl:if test="targetClassLabel != ''"> -->
+<!-- 								<li> -->
+<!-- 									<xsl:value-of -->
+<!-- 										select="$LABELS/labels/entry[@key='LABEL_TARGETCLASS']/@label" /> -->
+<!-- 									<a href="{targetClassUri}"> -->
+<!-- 										<xsl:value-of select="targetClassLabel" /> -->
+<!-- 									</a> -->
+<!-- 								</li> -->
+<!-- 							</xsl:if> -->
+<!-- 							<xsl:call-template name="superclasses"/> -->
+<!-- 							<xsl:if test="closed='true'"> -->
+<!-- 								<li> -->
+<!-- 									<xsl:value-of -->
+<!-- 										select="$LABELS/labels/entry[@key='LABEL_CLOSE']/@label" /> -->
+<!-- 								</li> -->
+<!-- 							</xsl:if> -->
+<!-- 							<xsl:if test="nodeKind != ''"> -->
+<!-- 								<li> -->
+<!-- 									<xsl:value-of -->
+<!-- 										select="$LABELS/labels/entry[@key='LABEL_NODEKIND']/@label" /> -->
+<!-- 									<xsl:value-of select="nodeKind" /> -->
+<!-- 								</li> -->
+<!-- 							</xsl:if> -->
 		
-							<xsl:if test="pattern != ''">
-								<li>
-									<xsl:value-of
-										select="$LABELS/labels/entry[@key='LABEL_PATTERNS']/@label" />
-									<xsl:value-of select="pattern" />							
-								</li>
-							</xsl:if>
-							<!-- Example -->
-							<xsl:if test="skosExample != ''">
-								<li>
-									<xsl:value-of select="$LABELS/labels/entry[@key='LABEL_EXAMPLE']/@label"/>
-									<xsl:value-of select="skosExample"/>										
-								</li>
-							</xsl:if>
-						</ul>
-					</xsl:if>
+<!-- 							<xsl:if test="pattern != ''"> -->
+<!-- 								<li> -->
+<!-- 									<xsl:value-of -->
+<!-- 										select="$LABELS/labels/entry[@key='LABEL_PATTERNS']/@label" /> -->
+<!-- 									<xsl:value-of select="pattern" />							 -->
+<!-- 								</li> -->
+<!-- 							</xsl:if> -->
+<!-- 							Example -->
+<!-- 							<xsl:if test="skosExample != ''"> -->
+<!-- 								<li> -->
+<!-- 									<xsl:value-of select="$LABELS/labels/entry[@key='LABEL_EXAMPLE']/@label"/> -->
+<!-- 									<xsl:value-of select="skosExample"/>										 -->
+<!-- 								</li> -->
+<!-- 							</xsl:if> -->
+<!-- 						</ul> -->
+<!-- 					</xsl:if> -->
 					<xsl:if test="count(properties/property)>0">
 						<xsl:apply-templates />
 					</xsl:if>
-				</section>
-			</div>
-		</div>
-		<br/>
+<!-- 				</section> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<br/> -->
+	</xsl:result-document>
+	</xsl:template>
+	
+	<xsl:template name="superclasses">
+		<xsl:if test="superClasses/link">
+			<xsl:for-each select="superClasses/link">
+				<xsl:choose>
+					<xsl:when test="position() = 1">
+		                <a href="{href}"><xsl:value-of select="label" /></a>
+		            </xsl:when>
+		            <xsl:otherwise>
+		                , <a href="{href}"><xsl:value-of select="label" /></a>
+		            </xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+		</xsl:if>
 	</xsl:template>
 
 	<!-- Properties -->
@@ -847,12 +625,12 @@
 
 	<xsl:template match="property">
 	
-	<xsl:value-of select="localName"/>
+<!-- 	<xsl:value-of select="localName"/> -->
 	<xsl:variable name="filename" select="localName" />
-	<xsl:value-of select="$filename" />
+<!-- 	<xsl:value-of select="$filename" /> -->
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
-	<xsl:value-of select="$correctfn"/>
+<!-- 	<xsl:value-of select="$correctfn"/> -->
 	
 	<xsl:result-document href="{$correctfn}" method="html">
 	
@@ -976,30 +754,38 @@
 					<xsl:value-of select="description" />
 				</td>
 			</tr>
+			<xsl:if test="skosScopeNote != ''">
+				<tr>
+					<td>Contextuele toelichting</td>
+					<td>
+						<xsl:value-of select="skosScopeNote" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="skosDefinition != ''">
 			<tr>
-				<td>Scopenote</td>
-				<td>
-					<xsl:value-of select="skosScopeNote" />
-				</td>
-			</tr>
-			<tr>
-				<td>Skosdefinition</td>
+				<td>Contextuele definitie</td>
 				<td>
 					<xsl:value-of select="skosDefinition" />
 				</td>
 			</tr>
-			<tr>
-				<td>FRBR</td>
-				<td>
-					<xsl:value-of select="tooiFrbrScope" />
-				</td>
-			</tr>
-			<tr>
-				<td>TOOI-categorie</td>
-				<td>
-					<xsl:value-of select="tooiCategorie" />
-				</td>
-			</tr>
+			</xsl:if>
+			<xsl:if test="skosScopeNote != ''">
+				<tr>
+					<td>FRBR</td>
+					<td>
+						<xsl:value-of select="tooiFrbrScope" />
+					</td>
+				</tr>	
+			</xsl:if>
+			<xsl:if test="tooiCategorie != ''">
+				<tr>
+					<td>TOOI-categorie</td>
+					<td>
+						<xsl:value-of select="tooiCategorie" />
+					</td>
+				</tr>
+			</xsl:if>
 		</table>
  		</xsl:result-document>
 	</xsl:template>

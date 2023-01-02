@@ -18,7 +18,10 @@ public class ShapesDocumentationSection {
 	private String pattern;
 	private String nodeKind;
 	private Boolean closed;
+	private String skosDefinition;
 	private String skosExample;
+	private String skosNote;
+	private String skosScopeNote;
 	
 	@JacksonXmlElementWrapper(localName="superClasses")
 	@JacksonXmlProperty(localName = "link")
@@ -35,13 +38,37 @@ public class ShapesDocumentationSection {
 	public void setSuperClasses(List<Link> superClasses) {
 		this.superClasses = superClasses;
 	}
+	
+	public String getSkosDefinition() {
+		return skosDefinition;
+	}
 
 	public String getSkosExample() {
 		return skosExample;
 	}
+	
+	public String getSkosNote() {
+		return skosNote;
+	}
+	
+	public String getSkosScopeNote() {
+		return skosScopeNote;
+	}
+	
+	public void setSkosDefinition(String skosDefinition) {
+		this.skosDefinition = skosDefinition;
+	}
 
 	public void setSkosExample(String skosExample) {
 		this.skosExample = skosExample;
+	}
+	
+	public void setSkosNote(String skosNote) {
+		this.skosNote = skosNote;
+	}
+	
+	public void setSkosScopeNote(String skosScopeNote) {
+		this.skosScopeNote = skosScopeNote;
 	}
 
 	public String getTitle() {

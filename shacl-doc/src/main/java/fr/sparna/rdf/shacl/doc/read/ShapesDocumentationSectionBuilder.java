@@ -51,8 +51,17 @@ public class ShapesDocumentationSectionBuilder {
 			currentSection.setClosed(nodeShape.getShClosed());
 		}
 		
+		// skos:definition
+		currentSection.setSkosDefinition((nodeShape.getSkosDefinition() != null)?nodeShape.getSkosDefinition().toString():null);
+		
 		// skos:example
 		currentSection.setSkosExample((nodeShape.getSkosExample() != null)?nodeShape.getSkosExample().toString():null);
+		
+		// skos:note
+		currentSection.setSkosNote((nodeShape.getSkosNote() != null)?nodeShape.getSkosNote().toString():null);
+		
+		// skos:scopeNote
+		currentSection.setSkosScopeNote((nodeShape.getSkosScopeNote() != null)?nodeShape.getSkosScopeNote().toString():null);
 		
 		// rdfs:subClassOf
 		currentSection.setSuperClasses(nodeShape.getRdfsSubClassOf().stream()
