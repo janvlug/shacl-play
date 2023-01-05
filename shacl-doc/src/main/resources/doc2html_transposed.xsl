@@ -509,6 +509,7 @@
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 	
+	<!-- Class -->
 	<xsl:result-document href="{$correctfn}" method="html">
 		<h3>Klasse: <xsl:value-of select="uri"/></h3>
 		<table>
@@ -727,33 +728,39 @@
 					</xsl:if>				
 				</td>
 			</tr>
-			<tr>
-				<!-- Property name -->
-				<td>Label</td>
-				<td>
-					<xsl:value-of select="label" />
-				</td>
-			</tr>
-			<tr>
-				<td>Objectklasse</td>
-				<td>
-					<xsl:value-of select="rangeClass" />
-				</td>
-			</tr>
-			<tr>
-				<td>Cardinaliteit</td>
-				<td>
-					<div style="width:30px">
+			<xsl:if test="label != ''">
+				<tr>
+					<!-- Property name -->
+					<td>Label</td>
+					<td>
+						<xsl:value-of select="label" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="rangeClass != ''">
+				<tr>					
+					<td>Objectklasse</td>
+					<td>
+						<xsl:value-of select="rangeClass" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="description != ''">
+				<tr>
+					<td>Cardinaliteit</td>
+					<td>
 						<xsl:value-of select="cardinalite" />
-					</div>								
-				</td>
-			</tr>
-			<tr>
-				<td>Beschrijving</td>
-				<td class="sp_table_propertyshapes_col_description">
-					<xsl:value-of select="description" />
-				</td>
-			</tr>
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="description != ''">
+				<tr>
+					<td>Beschrijving</td>
+					<td>
+						<xsl:value-of select="description" />
+					</td>
+				</tr>
+			</xsl:if>
 			<xsl:if test="skosScopeNote != ''">
 				<tr>
 					<td>Contextuele toelichting</td>
@@ -770,7 +777,7 @@
 				</td>
 			</tr>
 			</xsl:if>
-			<xsl:if test="skosScopeNote != ''">
+			<xsl:if test="tooiFrbrScope != ''">
 				<tr>
 					<td>FRBR</td>
 					<td>
