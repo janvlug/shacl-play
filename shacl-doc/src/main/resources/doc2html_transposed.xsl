@@ -505,13 +505,21 @@
 	</xsl:template>
 	
 	<xsl:template match="section">
-	<xsl:variable name="filename" select="localName" />
+	<xsl:variable name = "filename">
+		<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+		  <xsl:value-of select="localName" />
+		</xsl:if>
+		<xsl:if test="nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
+		  <xsl:value-of select="replace(uri,':', '_')"/>
+		</xsl:if>
+	</xsl:variable>
+	<xsl:value-of select="$filename"/>
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 	
 	<!-- Class -->
 	<!-- Process only classes in the tooiont namespace -->
-	<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+	
 	<xsl:result-document href="{$correctfn}" method="html">
 		<h3>Klasse: <xsl:value-of select="uri"/></h3>
 		<table>
@@ -603,7 +611,6 @@
 <!-- 		</div> -->
 <!-- 		<br/> -->
 	</xsl:result-document>
-	</xsl:if>
 	</xsl:template>
 	
 	<xsl:template name="superclasses">
@@ -629,8 +636,19 @@
 
 	<xsl:template match="property">
 	
-<!-- 	<xsl:value-of select="localName"/> -->
-	<xsl:variable name="filename" select="localName" />
+	<xsl:variable name = "filename">
+		<xsl:if test="ancestor::section/nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+		  <xsl:value-of select="localName" />
+		</xsl:if>
+		<xsl:if test="ancestor::section/nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
+		  <xsl:variable name="uri" select="replace(ancestor::section/uri,':.*$', '_')"/>
+		  <xsl:value-of select="concat($uri, localName)"/>
+		</xsl:if>
+	</xsl:variable>
+	
+<!-- 	<xsl:value-of select="ancestor::section/uri"/> -->
+	
+	
 <!-- 	<xsl:value-of select="$filename" /> -->
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
