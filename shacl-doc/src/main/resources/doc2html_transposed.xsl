@@ -513,7 +513,6 @@
 		  <xsl:value-of select="replace(uri,':', '_')"/>
 		</xsl:if>
 	</xsl:variable>
-	<xsl:value-of select="$filename"/>
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 	
