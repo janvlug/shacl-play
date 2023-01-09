@@ -505,11 +505,13 @@
 	</xsl:template>
 	
 	<xsl:template match="section">
-	<xsl:variable name="filename" select="title" />
+	<xsl:variable name="filename" select="localName" />
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 	
 	<!-- Class -->
+	<!-- Process only classes in the tooiont namespace -->
+	<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
 	<xsl:result-document href="{$correctfn}" method="html">
 		<h3>Klasse: <xsl:value-of select="uri"/></h3>
 		<table>
@@ -601,6 +603,7 @@
 <!-- 		</div> -->
 <!-- 		<br/> -->
 	</xsl:result-document>
+	</xsl:if>
 	</xsl:template>
 	
 	<xsl:template name="superclasses">

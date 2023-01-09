@@ -12,6 +12,8 @@ public class ShapesDocumentationSection {
 
 	private String title;
 	private String uri;
+	private String localName;
+	private String nameSpace;
 	private String description;
 	private String targetClassLabel;
 	private String targetClassUri;
@@ -31,6 +33,22 @@ public class ShapesDocumentationSection {
 	@JacksonXmlProperty(localName = "property")
 	public List<PropertyShapeDocumentation> propertySections;
 
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+	
+	public String getLocalName() {
+		return localName;
+	}
+	
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
+	}
+	
+	public String getNameSpace() {
+		return nameSpace;
+	}
+	
 	public List<Link> getSuperClasses() {
 		return superClasses;
 	}

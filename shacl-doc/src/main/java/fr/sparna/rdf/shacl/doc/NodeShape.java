@@ -142,6 +142,10 @@ public class NodeShape {
 	public String getLocalName() {
 		return this.getNodeShape().getLocalName();
 	}
+	
+	public String getNameSpace() {
+		return this.getNodeShape().getNameSpace();
+	}
 
 	public List<Resource> getRdfsSubClassOf() {
 		return rdfsSubClassOf;
