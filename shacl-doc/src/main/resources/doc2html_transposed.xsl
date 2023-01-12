@@ -761,7 +761,7 @@
 			</xsl:if>
 			<xsl:if test="rangeClass != ''">
 				<tr>					
-					<td>Bereik</td>
+					<td>Object</td>
 					<td>
 						<xsl:value-of select="rangeClass" />
 					</td>
