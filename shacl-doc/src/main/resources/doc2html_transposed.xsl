@@ -664,54 +664,63 @@
 				<td>Subjectklasse</td>
 				<!-- Expected Value -->
 				<td>
+					<!-- Op verzoek (voorlopig) alleen de URI -->
 					<xsl:choose>
-						<xsl:when test="linkNodeShape != ''">
-							<code>
-								<a href="{concat('#',linkNodeShapeUri)}">
-									<xsl:value-of select="linkNodeShape" />
-								</a>
-							</code>
+						<xsl:when test="linkNodeShapeUri != ''">
+							<xsl:value-of select="linkNodeShapeUri" />
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:choose>
-								<xsl:when test="string-length(or) > 0">
-									<xsl:variable name="nfois"
-										select="count(tokenize(or,','))" />
-									<xsl:for-each select="tokenize(or,',')">
-										<xsl:variable name="countData">
-											<xsl:choose>
-												<xsl:when test="position() = 1">
-													<xsl:value-of select="count(.)" />
-												</xsl:when>
-												<xsl:otherwise>
-													<xsl:value-of select="count(.)+1" />
-												</xsl:otherwise>
-											</xsl:choose>
-										</xsl:variable>
-										<xsl:variable name="sDataOrg" select="." />
-											<code>
-												<a href="{concat('#',$sDataOrg)}">
-													<xsl:value-of select="concat($sDataOrg,' ')" />
-												</a>
-											</code>
-										<xsl:choose>
-											<xsl:when test="$nfois &gt; $countData">
-												<code>
-													<xsl:text>or</xsl:text>
-												</code>
-											</xsl:when>
-										</xsl:choose>
-									</xsl:for-each>
-								</xsl:when>
-								<xsl:otherwise>
-									<code>
-										<!-- disable output espacing as we may have <sup> in rendering -->
-										<xsl:value-of disable-output-escaping="yes" select="expectedValueLabel" />
-									</code>
-								</xsl:otherwise>
-							</xsl:choose>
+							<xsl:message terminate="no">WARNING: linkNodeShapeUri (URI) voor <xsl:value-of select="localName"/> ontbreekt</xsl:message>
 						</xsl:otherwise>
-					</xsl:choose>
+					</xsl:choose>	
+<!-- 					<xsl:choose> -->
+<!-- 						<xsl:when test="linkNodeShape != ''"> -->
+<!-- 							<code> -->
+<!-- 								<a href="{concat('#',linkNodeShapeUri)}"> -->
+<!-- 									<xsl:value-of select="linkNodeShape" /> -->
+<!-- 								</a> -->
+<!-- 							</code> -->
+<!-- 						</xsl:when> -->
+<!-- 						<xsl:otherwise> -->
+<!-- 							<xsl:choose> -->
+<!-- 								<xsl:when test="string-length(or) > 0"> -->
+<!-- 									<xsl:variable name="nfois" -->
+<!-- 										select="count(tokenize(or,','))" /> -->
+<!-- 									<xsl:for-each select="tokenize(or,',')"> -->
+<!-- 										<xsl:variable name="countData"> -->
+<!-- 											<xsl:choose> -->
+<!-- 												<xsl:when test="position() = 1"> -->
+<!-- 													<xsl:value-of select="count(.)" /> -->
+<!-- 												</xsl:when> -->
+<!-- 												<xsl:otherwise> -->
+<!-- 													<xsl:value-of select="count(.)+1" /> -->
+<!-- 												</xsl:otherwise> -->
+<!-- 											</xsl:choose> -->
+<!-- 										</xsl:variable> -->
+<!-- 										<xsl:variable name="sDataOrg" select="." /> -->
+<!-- 											<code> -->
+<!-- 												<a href="{concat('#',$sDataOrg)}"> -->
+<!-- 													<xsl:value-of select="concat($sDataOrg,' ')" /> -->
+<!-- 												</a> -->
+<!-- 											</code> -->
+<!-- 										<xsl:choose> -->
+<!-- 											<xsl:when test="$nfois &gt; $countData"> -->
+<!-- 												<code> -->
+<!-- 													<xsl:text>or</xsl:text> -->
+<!-- 												</code> -->
+<!-- 											</xsl:when> -->
+<!-- 										</xsl:choose> -->
+<!-- 									</xsl:for-each> -->
+<!-- 								</xsl:when> -->
+<!-- 								<xsl:otherwise> -->
+<!-- 									<code> -->
+<!-- 										disable output espacing as we may have <sup> in rendering -->
+<!-- 										<xsl:value-of disable-output-escaping="yes" select="expectedValueLabel" /> -->
+<!-- 									</code> -->
+<!-- 								</xsl:otherwise> -->
+<!-- 							</xsl:choose> -->
+<!-- 						</xsl:otherwise> -->
+<!-- 					</xsl:choose> -->
 					<br />
 					<xsl:if test="expectedValueAdditionnalInfoIn/text()">
 						<p>
