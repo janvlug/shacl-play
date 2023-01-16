@@ -660,19 +660,24 @@
 <!-- 	<xsl:result-document href="$fullfilename" > -->
 	    <h3>Property Shape: <xsl:value-of select="localName" /></h3>
 		<table>
-			<tr>
-				<td>Subjectklasse</td>
-				<!-- Expected Value -->
-				<td>
+			<!-- onderstaande rij zou een fancier formattering van het Bereik geven lijkt me. Voorlopig of verzoek niet beschikbaar -->
+<!-- 			<tr> -->
+				
+<!-- 				<td>FancyBereik</td> -->
+<!-- 				<td> -->
+				
 					<!-- Op verzoek (voorlopig) alleen de URI -->
-					<xsl:choose>
-						<xsl:when test="linkNodeShapeUri != ''">
-							<xsl:value-of select="linkNodeShapeUri" />
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:message terminate="no">WARNING: linkNodeShapeUri (URI) voor <xsl:value-of select="localName"/> ontbreekt</xsl:message>
-						</xsl:otherwise>
-					</xsl:choose>	
+<!-- 					<xsl:choose> -->
+<!-- 						<xsl:when test="linkNodeShapeUri != ''"> -->
+<!-- 							<xsl:value-of select="linkNodeShapeUri" /> -->
+<!-- 						</xsl:when> -->
+<!-- 						<xsl:otherwise> -->
+<!-- 							<xsl:message terminate="no">WARNING: linkNodeShapeUri (URI) voor <xsl:value-of select="localName"/> ontbreekt</xsl:message> -->
+<!-- 						</xsl:otherwise> -->
+<!-- 					</xsl:choose>	 -->
+
+
+
 <!-- 					<xsl:choose> -->
 <!-- 						<xsl:when test="linkNodeShape != ''"> -->
 <!-- 							<code> -->
@@ -714,31 +719,37 @@
 <!-- 								</xsl:when> -->
 <!-- 								<xsl:otherwise> -->
 <!-- 									<code> -->
-<!-- 										disable output espacing as we may have <sup> in rendering -->
+<!--  										disable output espacing as we may have <sup> in rendering  -->
 <!-- 										<xsl:value-of disable-output-escaping="yes" select="expectedValueLabel" /> -->
 <!-- 									</code> -->
 <!-- 								</xsl:otherwise> -->
 <!-- 							</xsl:choose> -->
 <!-- 						</xsl:otherwise> -->
 <!-- 					</xsl:choose> -->
-					<br />
-					<xsl:if test="expectedValueAdditionnalInfoIn/text()">
-						<p>
-							<small>
-								<!-- disable output espacing as we may have <sup> in rendering -->
-								<xsl:value-of disable-output-escaping="yes"
-									select="concat('(',expectedValueAdditionnalInfoIn,')')" />
-							</small>
-						</p>
-					</xsl:if>
-					<xsl:if test="expectedValueAdditionnalInfoValue/text()">
-						<p>
-							<small>
-								<xsl:value-of
-									select="expectedValueAdditionnalInfoValue" />
-							</small>
-						</p>
-					</xsl:if>
+<!-- 					<br /> -->
+<!-- 					<xsl:if test="expectedValueAdditionnalInfoIn/text()"> -->
+<!-- 						<p> -->
+<!-- 							<small> -->
+<!-- 								disable output espacing as we may have <sup> in rendering -->
+<!-- 								<xsl:value-of disable-output-escaping="yes" -->
+<!-- 									select="concat('(',expectedValueAdditionnalInfoIn,')')" /> -->
+<!-- 							</small> -->
+<!-- 						</p> -->
+<!-- 					</xsl:if> -->
+<!-- 					<xsl:if test="expectedValueAdditionnalInfoValue/text()"> -->
+<!-- 						<p> -->
+<!-- 							<small> -->
+<!-- 								<xsl:value-of -->
+<!-- 									select="expectedValueAdditionnalInfoValue" /> -->
+<!-- 							</small> -->
+<!-- 						</p> -->
+<!-- 					</xsl:if> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+			<tr>
+				<td>Subjectklasse</td>
+				<td>
+					<xsl:value-of select="ancestor::section/uri"/>
 				</td>
 			</tr>
 			<tr>
@@ -768,14 +779,59 @@
 					</td>
 				</tr>
 			</xsl:if>
-			<xsl:if test="rangeClass != ''">
-				<tr>					
-					<td>Object</td>
-					<td>
-						<xsl:value-of select="rangeClass" />
-					</td>
-				</tr>
-			</xsl:if>
+			<tr>					
+				<td>Bereik</td>
+				<td>
+					<xsl:choose>
+						<xsl:when test="linkNodeShape != ''">
+							<xsl:value-of select="linkNodeShapeUri" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:choose>
+								<xsl:when test="string-length(or) > 0">
+									<xsl:variable name="nfois"
+										select="count(tokenize(or,','))" />
+									<xsl:for-each select="tokenize(or,',')">
+										<xsl:variable name="countData">
+													<xsl:value-of select="position()" />
+										</xsl:variable>
+										<xsl:value-of select="." />
+										<xsl:choose>
+											<xsl:when test="$nfois &gt; $countData">
+													<xsl:text> or</xsl:text>
+											</xsl:when>
+										</xsl:choose>
+									</xsl:for-each>
+								</xsl:when>
+								<xsl:otherwise>
+									<code>
+<!--  										disable output espacing as we may have <sup> in rendering  -->
+										<xsl:value-of disable-output-escaping="yes" select="expectedValueLabel" />
+									</code>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:otherwise>
+					</xsl:choose>
+					<br />
+					<xsl:if test="expectedValueAdditionnalInfoIn/text()">
+						<p>
+							<small>
+<!-- 								disable output espacing as we may have <sup> in rendering -->
+								<xsl:value-of disable-output-escaping="yes"
+									select="concat('(',expectedValueAdditionnalInfoIn,')')" />
+							</small>
+						</p>
+					</xsl:if>
+					<xsl:if test="expectedValueAdditionnalInfoValue/text()">
+						<p>
+							<small>
+								<xsl:value-of
+									select="expectedValueAdditionnalInfoValue" />
+							</small>
+						</p>
+					</xsl:if>
+				</td>
+			</tr>
 			<xsl:if test="description != ''">
 				<tr>
 					<td>Cardinaliteit</td>
