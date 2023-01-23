@@ -770,12 +770,21 @@
 					</xsl:if>				
 				</td>
 			</tr>
-			<xsl:if test="label != ''">
+			<xsl:variable name="propertyShapelabel">
+				<xsl:choose>
+					<xsl:when test="shName != ''">
+						<xsl:value-of select="shName" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="label" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:if test="$propertyShapelabel != ''">
 				<tr>
-					<!-- Property name -->
 					<td>Label</td>
 					<td>
-						<xsl:value-of select="label" />
+						<xsl:value-of select="$propertyShapelabel" />
 					</td>
 				</tr>
 			</xsl:if>
@@ -846,14 +855,6 @@
 					<td>Cardinaliteit</td>
 					<td>
 						<xsl:value-of select="cardinalite" />
-					</td>
-				</tr>
-			</xsl:if>
-			<xsl:if test="shName != ''">
-				<tr>
-					<td>Contextueel label</td>
-					<td>
-						<xsl:value-of select="shName" />
 					</td>
 				</tr>
 			</xsl:if>
