@@ -637,11 +637,11 @@
 	<xsl:template match="property">
 	
 	<xsl:variable name = "filename">
-		<xsl:if test="ancestor::section/nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+		<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
 		  <xsl:value-of select="localName" />
 		</xsl:if>
-		<xsl:if test="ancestor::section/nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:variable name="uri" select="replace(ancestor::section/uri,':.*$', '_')"/>
+		<xsl:if test="nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
+		  <xsl:variable name="uri" select="replace(propertyUri/label,':.*$', '_')"/>
 		  <xsl:value-of select="concat($uri, localName)"/>
 		</xsl:if>
 	</xsl:variable>

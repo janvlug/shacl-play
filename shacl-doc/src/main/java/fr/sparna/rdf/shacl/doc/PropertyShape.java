@@ -37,6 +37,8 @@ public class PropertyShape {
 	protected Integer shOrder;
 	protected RDFNode shValue;
 	protected String localName;
+	protected String nameSpace;
+
 	
 	protected List<Resource> shOr;	
 	
@@ -177,6 +179,12 @@ public class PropertyShape {
 	}
 	public String getLocalName() {
 		return localName;
+	}
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
+	}
+	public String getNameSpace() {
+		return nameSpace;
 	}
 	
 	/**

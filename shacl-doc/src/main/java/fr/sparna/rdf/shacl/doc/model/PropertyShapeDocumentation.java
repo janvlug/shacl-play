@@ -19,6 +19,7 @@ public class PropertyShapeDocumentation {
 	private String tooiFrbrScope;
 	private String tooiCategorie;
 	private String localName;
+	private String nameSpace;
 	private String shName;
 	private String rdfsLabel;
 
@@ -104,6 +105,10 @@ public class PropertyShapeDocumentation {
 		return localName;
 	}
 	
+	public String getNameSpace() {
+		return nameSpace;
+	}
+	
 	public String getShName() {
 		return shName;
 	}
@@ -142,6 +147,10 @@ public class PropertyShapeDocumentation {
 	
 	public void setLocalName(String localName) {
 		this.localName = localName;
+	}
+	
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
 	}
 	
 	public void setShName(String shName) {

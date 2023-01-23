@@ -29,6 +29,7 @@ public class PropertyShapeReader {
 		PropertyShape shaclProperty = new PropertyShape(constraint);
 		
 		shaclProperty.setLocalName (constraint.getLocalName());
+		shaclProperty.setNameSpace(constraint.getNameSpace());
 
 		shaclProperty.setRdfsLabel(this.readRdfsLabel(constraint));
 		shaclProperty.setShPath(this.readShPath(constraint));

@@ -91,6 +91,7 @@ public class PropertyShapeDocumentationBuilder {
 		proprieteDoc.setRangeClass(selectShClass(propertyShape, shaclGraph.union(owlGraph), lang));
 		proprieteDoc.setTooiFrbrScope(selectTooiFrbrScope(propertyShape, shaclGraph.union(owlGraph), lang));
 		proprieteDoc.setTooiCategorie(selectTooiCategorie(propertyShape, shaclGraph.union(owlGraph), lang));
+		proprieteDoc.setNameSpace(propertyShape.getNameSpace());
 		proprieteDoc.setLocalName(propertyShape.getLocalName());
 		proprieteDoc.setShName(propertyShape.getShNameAsString());
 		proprieteDoc.setRdfsLabel(propertyShape.getRdfsLabelAsString());
