@@ -847,7 +847,7 @@
 						<xsl:value-of select="shName" />
 					</td>
 				</tr>
-			</xsl:if>"
+			</xsl:if>
 			<xsl:if test="description != ''">
 				<tr>
 					<td>Beschrijving</td>
