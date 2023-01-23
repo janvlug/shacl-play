@@ -20,6 +20,7 @@ public class PropertyShapeDocumentation {
 	private String tooiCategorie;
 	private String localName;
 	private String shName;
+	private String rdfsLabel;
 
 	private String Or;
 
@@ -107,6 +108,10 @@ public class PropertyShapeDocumentation {
 		return shName;
 	}
 	
+	public String getRdfsLabel() {
+		return rdfsLabel;
+	}
+	
 	public String getSkosDefinition() {
 		return skosDefinition;
 	}
@@ -141,6 +146,10 @@ public class PropertyShapeDocumentation {
 	
 	public void setShName(String shName) {
 		this.shName = shName;
+	}
+	
+	public void setRdfsLabel(String rdfsLabel) {
+		this.rdfsLabel = rdfsLabel;
 	}
 	
 	public void setRangeClass(String rangeclass) {

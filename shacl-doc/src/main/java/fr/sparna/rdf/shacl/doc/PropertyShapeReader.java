@@ -8,6 +8,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFList;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDFS;
 import org.topbraid.shacl.vocabulary.SH;
 import nl.overheid.koop.conmod.skos.SKOS;
 import nl.overheid.koop.conmod.tooi.Tooiont;
@@ -29,6 +30,7 @@ public class PropertyShapeReader {
 		
 		shaclProperty.setLocalName (constraint.getLocalName());
 
+		shaclProperty.setRdfsLabel(this.readRdfsLabel(constraint));
 		shaclProperty.setShPath(this.readShPath(constraint));
 		shaclProperty.setShDatatype(this.readShDatatype(constraint));
 		shaclProperty.setShNodeKind(this.readShNodeKind(constraint));
@@ -46,7 +48,7 @@ public class PropertyShapeReader {
 		shaclProperty.setSkosDefinition(this.readSkosDefinition(constraint));
 		shaclProperty.setSkosScopeNote(this.readSkosScopeNote(constraint));
 		shaclProperty.setTooiFrbrScope(this.readTooiFrbrScope(constraint));
-		shaclProperty.setTooiCategorie(this.readTooiCategorie(constraint));		
+		shaclProperty.setTooiCategorie(this.readTooiCategorie(constraint));
 		
 		return shaclProperty;
 	}
@@ -114,6 +116,10 @@ public class PropertyShapeReader {
 	
 	public List<Literal> readTooiCategorie(Resource constraint) {
 		return ConstraintValueReader.readLiteralInLang(constraint, Tooiont.categorie, this.lang);
+	}
+	
+	public List<Literal> readRdfsLabel(Resource constraint) {
+		return ConstraintValueReader.readLiteralInLang(constraint, RDFS.label, this.lang);
 	}
 
 	public List<Literal> readDescription(Resource constraint) {

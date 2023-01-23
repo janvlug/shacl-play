@@ -27,6 +27,7 @@ public class PropertyShape {
 	protected Resource shNode;
 	protected Resource shClass;
 	protected List<Literal> shName;
+	protected List<Literal> rdfsLabel;
 	protected List<Literal> skosDefinition;
 	protected List<Literal> skosScopeNote;
 	protected List<Literal> tooiFrbrScope;
@@ -117,6 +118,12 @@ public class PropertyShape {
 	public void setShName(List<Literal> shName) {
 		this.shName = shName;
 	}
+	public List<Literal> getRdfsLabel() {
+		return rdfsLabel;
+	}
+	public void setRdfsLabel(List<Literal> rdfsLabel) {
+		this.rdfsLabel = rdfsLabel;
+	}
 	public List<Literal> getSkosDefinition() {
 		return skosDefinition;
 	}
@@ -182,6 +189,10 @@ public class PropertyShape {
 	
 	public String getShNameAsString() {
 		return PropertyShapeDocumentationBuilder.render(this.getShName(), true);
+	}
+	
+	public String getRdfsLabelAsString() {
+		return PropertyShapeDocumentationBuilder.render(this.getRdfsLabel(), true);
 	}
 	
 	

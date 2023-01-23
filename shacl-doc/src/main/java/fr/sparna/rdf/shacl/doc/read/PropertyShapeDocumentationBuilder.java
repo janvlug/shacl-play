@@ -93,6 +93,7 @@ public class PropertyShapeDocumentationBuilder {
 		proprieteDoc.setTooiCategorie(selectTooiCategorie(propertyShape, shaclGraph.union(owlGraph), lang));
 		proprieteDoc.setLocalName(propertyShape.getLocalName());
 		proprieteDoc.setShName(propertyShape.getShNameAsString());
+		proprieteDoc.setRdfsLabel(propertyShape.getRdfsLabelAsString());
 		
 		// create a String of comma-separated short forms
 		proprieteDoc.setOr(render(propertyShape.getShOr(), false));
