@@ -779,6 +779,15 @@
 					</td>
 				</tr>
 			</xsl:if>
+			<xsl:if test="skosDefinition != ''">
+				<tr>
+					<!-- Property name -->
+					<td>Definitie</td>
+					<td>
+						<xsl:value-of select="skosDefinition" />
+					</td>
+				</tr>
+			</xsl:if>
 			<tr>					
 				<td>Bereik</td>
 				<td>
@@ -863,14 +872,6 @@
 						<xsl:value-of select="skosScopeNote" />
 					</td>
 				</tr>
-			</xsl:if>
-			<xsl:if test="skosDefinition != ''">
-			<tr>
-				<td>Contextuele definitie</td>
-				<td>
-					<xsl:value-of select="skosDefinition" />
-				</td>
-			</tr>
 			</xsl:if>
 			<xsl:if test="tooiFrbrScope != ''">
 				<tr>
