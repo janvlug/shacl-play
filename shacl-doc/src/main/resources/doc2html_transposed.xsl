@@ -523,6 +523,9 @@
 	<xsl:result-document href="{$correctfn}" method="html" suppress-indentation="td" >
 		<h3>Klasse: <xsl:value-of select="uri"/></h3>
 		<table>
+			<xsl:if test="title = ''">
+				<xsl:message>Klasse: <xsl:value-of select="uri"/> heeft geen label</xsl:message>>
+			</xsl:if>
 			<tr>
 				<td>Label</td>
 				<td><xsl:value-of select="title"/></td>
@@ -780,6 +783,11 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:variable>
+			
+			<xsl:if test="$propertyShapelabel = ''">
+				<xsl:message>Property: <xsl:value-of select="localName" /> heeft geen label</xsl:message>>
+			</xsl:if>
+			
 			<xsl:if test="$propertyShapelabel != ''">
 				<tr>
 					<td>Label</td>
