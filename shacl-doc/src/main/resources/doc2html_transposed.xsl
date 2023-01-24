@@ -521,8 +521,12 @@
 	
 	<!-- indentation causes problems, because spaces on further empty lines will be interpreted as markdown makeup -->
 	<xsl:result-document href="{$correctfn}" method="html" suppress-indentation="td" >
-		<h3>Klasse: <xsl:value-of select="uri"/></h3>
+		<h3>Klasse: <xsl:value-of select="title"/></h3>
 		<table>
+			<tr>
+				<td>URI</td>
+				<td><code><xsl:value-of select="uri"/></code></td>
+			</tr>
 			<xsl:if test="title = ''">
 				<xsl:message>Klasse: <xsl:value-of select="uri"/> heeft geen label</xsl:message>>
 			</xsl:if>
@@ -749,6 +753,10 @@
 <!-- 					</xsl:if> -->
 <!-- 				</td> -->
 <!-- 			</tr> -->
+			<tr>
+				<td>URI</td>
+				<td><code><xsl:value-of select="propertyUri/label"/></code></td>
+			</tr>
 			<tr>
 				<td>Subjectklasse</td>
 				<td>
