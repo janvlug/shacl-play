@@ -762,9 +762,16 @@
 					<xsl:if test="propertyUri">
 						<xsl:choose>
 							<xsl:when test="propertyUri/href != ''">
-								<code>
-									<a href="{propertyUri/href}"><xsl:value-of select="propertyUri/label" /></a>							
-								</code>	
+								<xsl:choose>
+									<xsl:when test="starts-with(propertyUri/href, 'https://identifier.overheid.nl/')">
+										<code><xsl:value-of select="propertyUri/label" /></code>
+									</xsl:when>
+									<xsl:otherwise>
+										<code>
+											<a href="{propertyUri/href}"><xsl:value-of select="propertyUri/label" /></a>							
+										</code>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:when>
 							<xsl:otherwise>
 								<code><xsl:value-of select="propertyUri/label" /></code>
