@@ -860,7 +860,7 @@
 			</xsl:if>
 			<xsl:if test="description != ''">
 				<tr>
-					<td>Beschrijving</td>
+					<td>Toelichting</td>
 					<td>
 						<xsl:value-of select="description" />
 					</td>
