@@ -621,11 +621,11 @@
 			<xsl:for-each select="superClasses/link">
 				<xsl:choose>
 					<xsl:when test="position() = 1">
-		                <a href="{href}"><xsl:value-of select="label" /></a>
+						<code><xsl:value-of select="label" /></code>
 		            </xsl:when>
 		            <xsl:otherwise>
-		                , <a href="{href}"><xsl:value-of select="label" /></a>
-		            </xsl:otherwise>
+						, <code><xsl:value-of select="label" /></code>
+					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>
 		</xsl:if>
