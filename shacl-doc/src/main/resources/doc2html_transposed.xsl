@@ -752,7 +752,7 @@
 			<tr>
 				<td>Subjectklasse</td>
 				<td>
-					<xsl:value-of select="ancestor::section/uri"/>
+					<code><xsl:value-of select="ancestor::section/uri"/></code>
 				</td>
 			</tr>
 			<tr>
@@ -792,7 +792,7 @@
 			</xsl:variable>
 			
 			<xsl:if test="$propertyShapelabel = ''">
-				<xsl:message>Property: <xsl:value-of select="localName" /> heeft geen label</xsl:message>>
+				<xsl:message>Property: <xsl:value-of select="localName" /> heeft geen label</xsl:message>
 			</xsl:if>
 			
 			<xsl:if test="$propertyShapelabel != ''">
@@ -817,7 +817,7 @@
 				<td>
 					<xsl:choose>
 						<xsl:when test="linkNodeShape != ''">
-							<xsl:value-of select="linkNodeShapeUri" />
+							<code><xsl:value-of select="linkNodeShapeUri" /></code>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:choose>
@@ -828,7 +828,7 @@
 										<xsl:variable name="countData">
 													<xsl:value-of select="position()" />
 										</xsl:variable>
-										<xsl:value-of select="." />
+										<code><xsl:value-of select="." /></code>
 										<xsl:choose>
 											<xsl:when test="$nfois &gt; $countData">
 													<xsl:text> or</xsl:text>
@@ -869,7 +869,7 @@
 				<tr>
 					<td>Cardinaliteit</td>
 					<td>
-						<xsl:value-of select="cardinalite" />
+						<code><xsl:value-of select="cardinalite" /></code>
 					</td>
 				</tr>
 			</xsl:if>
