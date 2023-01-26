@@ -14,7 +14,7 @@ import fr.sparna.rdf.shacl.doc.read.PropertyShapeDocumentationBuilder;
 public class PropertyShape {
 
 	private Resource resource;
-	
+
 	// can be a URI or a blank node corresponding to a property path
 	protected Resource shPath;
 
@@ -39,9 +39,9 @@ public class PropertyShape {
 	protected String localName;
 	protected String nameSpace;
 
-	
-	protected List<Resource> shOr;	
-	
+
+	protected List<Resource> shOr;
+
 	public List<Resource> getShOr() {
 		return shOr;
 	}
@@ -54,7 +54,7 @@ public class PropertyShape {
 		super();
 		this.resource = resource;
 	}
-	
+
 	public Resource getResource() {
 		return resource;
 	}
@@ -78,7 +78,7 @@ public class PropertyShape {
 	public void setShNodeKind(Resource shNodeKind) {
 		this.shNodeKind = shNodeKind;
 	}
-	
+
 	public Integer getShMinCount() {
 		return shMinCount;
 	}
@@ -186,7 +186,7 @@ public class PropertyShape {
 	public String getNameSpace() {
 		return nameSpace;
 	}
-	
+
 	/**
 	 * Returns the short form of the property or the property path already shortened
 	 * @return
@@ -194,19 +194,19 @@ public class PropertyShape {
 	public String getShPathAsString() {
 		return (this.shPath.isURIResource())?PropertyShapeDocumentationBuilder.render(this.getShPath(), false):PropertyShape.renderShaclPropertyPath(this.getShPath());
 	}
-	
+
 	public String getShNameAsString() {
 		return PropertyShapeDocumentationBuilder.render(this.getShName(), true);
 	}
-	
+
 	public String getRdfsLabelAsString() {
 		return PropertyShapeDocumentationBuilder.render(this.getRdfsLabel(), true);
 	}
-	
-	
+
+
 	public static String renderShaclPropertyPath(Resource r) {
 		if(r == null) return "";
-		
+
 		if(r.isURIResource()) {
 			return r.getModel().shortForm(r.getURI());
 		} else if(r.hasProperty(SH.alternativePath)) {
@@ -242,5 +242,5 @@ public class PropertyShape {
 			return null;
 		}
 	}
-	
+
 }
