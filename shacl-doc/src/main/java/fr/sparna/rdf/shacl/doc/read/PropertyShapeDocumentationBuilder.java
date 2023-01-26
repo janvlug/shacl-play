@@ -32,7 +32,7 @@ public class PropertyShapeDocumentationBuilder {
 		// Start building final structure
 		PropertyShapeDocumentation proprieteDoc = new PropertyShapeDocumentation();
 		proprieteDoc.setLabel(selectLabel(propertyShape, shaclGraph.union(owlGraph), lang));
-		
+
 		if(propertyShape.getShNode() != null) {
 			for(NodeShape aBox : allNodeShapes) {
 				if(aBox.getNodeShape().getURI().equals(propertyShape.getShNode().getURI())) {
@@ -41,17 +41,21 @@ public class PropertyShapeDocumentationBuilder {
 						proprieteDoc.setLinkNodeShape(aBox.getShortForm());
 					}else {
 						proprieteDoc.setLinkNodeShape(aBox.getRdfsLabel());
-					}							
+					}
 				}
 			}
 		}
-		
+
 		//proprieteDoc.setShortForm(propertyShape.getShPathAsString());
-		//proprieteDoc.setPropertyUri(propertyShape.getShPath().isURIResource()?propertyShape.getShPath().getURI():null);				
-		
+		//proprieteDoc.setPropertyUri(propertyShape.getShPath().isURIResource()?propertyShape.getShPath().getURI():null);
+
+		// URI
+		String shortUri = propertyShape.getResource().getModel().shortForm(propertyShape.getResource().getURI());
+		proprieteDoc.setUri(shortUri);
+
 		// URI in the raport
 		proprieteDoc.setPropertyUri(buildPathLink(propertyShape));
-		
+
 		proprieteDoc.setExpectedValueLabel(selectExpectedValueLabel(
 				propertyShape.getShClass(),
 				propertyShape.getShNode(),
@@ -59,7 +63,7 @@ public class PropertyShapeDocumentationBuilder {
 				propertyShape.getShNodeKind(),
 				propertyShape.getShValue()
 		));
-		
+
 		if(propertyShape.getShClass() != null) {
 			for(NodeShape aNodeShape : allNodeShapes) {
 				if(aNodeShape.getShTargetClass() != null && aNodeShape.getShTargetClass().getURI().equals(propertyShape.getShClass().getURI())) {
@@ -80,7 +84,7 @@ public class PropertyShapeDocumentationBuilder {
 					}
 					break;
 				}
-			}					
+			}
 		}
 
 		proprieteDoc.setExpectedValueAdditionnalInfoIn(render(propertyShape.getShIn(), false));
@@ -95,13 +99,13 @@ public class PropertyShapeDocumentationBuilder {
 		proprieteDoc.setLocalName(propertyShape.getLocalName());
 		proprieteDoc.setShName(propertyShape.getShNameAsString());
 		proprieteDoc.setRdfsLabel(propertyShape.getRdfsLabelAsString());
-		
+
 		// create a String of comma-separated short forms
 		proprieteDoc.setOr(render(propertyShape.getShOr(), false));
-		
+
 		return proprieteDoc;
 	}
-	
+
 	public static String selectLabel(PropertyShape prop, Model owlModel, String lang) {
 		// if we have a sh:name, take it
 		if(prop.getShName() != null) {
@@ -113,7 +117,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectDescription(PropertyShape prop, Model owlModel, String lang) {
 		// if we have a sh:description, take it
 		if(prop.getShDescription() != null) {
@@ -125,7 +129,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectSkosScopeNote(PropertyShape prop, Model owlModel, String lang) {
 		// if we have a sh:description, take it
 		if(prop.getSkosScopeNote() != null) {
@@ -137,7 +141,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectSkosDefinition(PropertyShape prop, Model owlModel, String lang) {
 		// if we have a sh:description, take it
 		if(prop.getSkosDefinition() != null) {
@@ -149,7 +153,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectTooiFrbrScope(PropertyShape prop, Model owlModel, String lang) {
 		if(prop.getTooiFrbrScope() != null) {
 			return render(prop.getTooiFrbrScope(), true);
@@ -160,7 +164,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectTooiCategorie(PropertyShape prop, Model owlModel, String lang) {
 		// if we have a sh:description, take it
 		if(prop.getTooiCategorie() != null) {
@@ -172,7 +176,7 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String selectShClass(PropertyShape prop, Model owlModel, String lang) {
 		if(prop.getShClass() != null) {
 			return render(prop.getShClass(), true);
@@ -183,23 +187,23 @@ public class PropertyShapeDocumentationBuilder {
 			return null;
 		}
 	}
-	
+
 	public static String render(List<? extends RDFNode> list, boolean plainString) {
 		if(list == null) {
 			return null;
 		}
-		
+
 		return list.stream().map(item -> {
 			return render(item, plainString);
 		}).collect(Collectors.joining(", "));
 	}
-	
-	public static Link buildPathLink(PropertyShape prop) {			
+
+	public static Link buildPathLink(PropertyShape prop) {
 		if(prop.getShPath().isURIResource()) {
 			return new Link(
 					prop.getShPath().getURI(),
 					prop.getShPathAsString()
-			);			
+			);
 		} else {
 			return new Link(
 					null,
@@ -207,23 +211,23 @@ public class PropertyShapeDocumentationBuilder {
 			);
 		}
 	}
-	
+
 	public static String render(RDFNode node, boolean plainString) {
 		if(node == null) {
 			return null;
 		}
-		
+
 		if(node.isURIResource()) {
 			return node.getModel().shortForm(node.asResource().getURI());
 		} else if(node.isAnon()) {
 			return node.toString();
 		} else if(node.isLiteral()) {
 			// if we asked for a plain string, just return the literal string
-			if(plainString) {				
-				
+			if(plainString) {
+
 				try {
 					if(node.asLiteral().getDatatypeURI().equals(XSD.date.getURI())) {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");					
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 						Date date = formatter.parse(node.asLiteral().getLexicalForm());
 						return formatter.format(date);
 					} else if (node.asLiteral().getDatatypeURI().equals(XSD.dateTime.getURI())) {
@@ -239,7 +243,7 @@ public class PropertyShapeDocumentationBuilder {
 					node.asLiteral().getLexicalForm();
 				}
 			}
-			
+
 			if (node.asLiteral().getDatatype() != null && !node.asLiteral().getDatatypeURI().equals(RDF.langString.getURI())) {
 				// nicely prints datatypes with their short form
 				return "\"" + node.asLiteral().getLexicalForm() + "\"<sup>^^"
@@ -254,22 +258,22 @@ public class PropertyShapeDocumentationBuilder {
 			// default, should never get there
 			return node.toString();
 		}
-	}	
-	
+	}
+
 	public static String renderCardinalities(Integer min, Integer max) {
 		String minCount = "0";
 		String maxCount = "*";
-		
+
 		if (min != null) {
 			minCount = min.toString();
 		}
 		if (max != null) {
 			maxCount = max.toString();
 		}
-		
+
 		return minCount + ".." + maxCount;
 	}
-	
+
 	public static String selectExpectedValueLabel(
 			Resource shClass,
 			Resource shNode,
@@ -290,21 +294,21 @@ public class PropertyShapeDocumentationBuilder {
 		} else if (value_nodeKind != null) {
 			value = renderNodeKind(value_nodeKind);
 		}
-		
+
 		return value;
 	}
-	
+
 	public static String renderNodeKind(Resource nodeKind) {
 		if(nodeKind == null) {
 			return null;
 		}
-		
+
 		String rendered = render(nodeKind, false);
 		if (rendered.startsWith("sh:")) {
-			return rendered.split(":")[1];	
+			return rendered.split(":")[1];
 		} else {
 			return rendered;
 		}
 	}
-	
+
 }

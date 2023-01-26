@@ -515,7 +515,6 @@
 	</xsl:variable>
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
-	
 	<!-- Class -->
 	<!-- Process only classes in the tooiont namespace -->
 	
@@ -656,7 +655,7 @@
 <!-- 	<xsl:value-of select="ancestor::section/uri"/> -->
 	
 	
-<!-- 	<xsl:value-of select="$filename" /> -->
+<!--  	<xsl:value-of select="$filename" /> -->
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
 <!-- 	<xsl:value-of select="$correctfn"/> -->
@@ -755,7 +754,7 @@
 <!-- 			</tr> -->
 			<tr>
 				<td>URI</td>
-				<td><code><xsl:value-of select="propertyUri/label"/></code></td>
+				<td><code><xsl:value-of select="uri"/></code></td>
 			</tr>
 			<tr>
 				<td>Subjectklasse</td>

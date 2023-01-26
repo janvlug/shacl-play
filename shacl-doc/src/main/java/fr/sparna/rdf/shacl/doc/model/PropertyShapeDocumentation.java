@@ -6,6 +6,7 @@ public class PropertyShapeDocumentation {
 	
 	// null if sh:path is a property path
 	private Link propertyUri;
+	private String uri;
 	private String expectedValueLabel;
 
 	private String expectedValueAdditionnalInfoIn;
@@ -51,6 +52,14 @@ public class PropertyShapeDocumentation {
 
 	public void setPropertyUri(Link propertyUri) {
 		this.propertyUri = propertyUri;
+	}
+	
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
 
 	public String getExpectedValueLabel() {
