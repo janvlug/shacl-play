@@ -647,7 +647,7 @@
 		  <xsl:value-of select="localName" />
 		</xsl:if>
 		<xsl:if test="nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:variable name="uri" select="replace(propertyUri/label,':.*$', '_')"/>
+		  <xsl:variable name="uri" select="replace(uri,':.*$', '_')"/>
 		  <xsl:value-of select="concat($uri, localName)"/>
 		</xsl:if>
 	</xsl:variable>
