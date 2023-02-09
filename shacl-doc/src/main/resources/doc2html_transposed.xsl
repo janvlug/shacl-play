@@ -872,7 +872,7 @@
 					</xsl:if>
 				</td>
 			</tr>
-			<xsl:if test="description != ''">
+			<xsl:if test="cardinalite != ''">
 				<tr>
 					<td>Kardinaliteit</td>
 					<td>
