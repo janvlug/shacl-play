@@ -874,7 +874,7 @@
 			</tr>
 			<xsl:if test="description != ''">
 				<tr>
-					<td>Cardinaliteit</td>
+					<td>Kardinaliteit</td>
 					<td>
 						<code><xsl:value-of select="cardinalite" /></code>
 					</td>
