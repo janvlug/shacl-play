@@ -506,12 +506,17 @@
 	
 	<xsl:template match="section">
 	<xsl:variable name = "filename">
-		<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:value-of select="localName" />
-		</xsl:if>
-		<xsl:if test="nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:value-of select="replace(uri,':', '_')"/>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+			  <xsl:value-of select="localName" />
+			</xsl:when>
+			<xsl:when test="nameSpace = 'https://identifier.overheid.nl/tooi/def/wl/'">
+			  <xsl:value-of select="localName" />
+			</xsl:when>
+			<xsl:otherwise>
+			  <xsl:value-of select="replace(uri,':', '_')"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="fullfilename" select="concat('file:///tmp/shapes/',$filename)" />
 	<xsl:variable name="correctfn" select="concat($fullfilename, '.html')" />
@@ -643,13 +648,18 @@
 	<xsl:template match="property">
 	
 	<xsl:variable name = "filename">
-		<xsl:if test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:value-of select="localName" />
-		</xsl:if>
-		<xsl:if test="nameSpace != 'https://identifier.overheid.nl/tooi/def/ont/'">
-		  <xsl:variable name="uri" select="replace(uri,':.*$', '_')"/>
-		  <xsl:value-of select="concat($uri, localName)"/>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="nameSpace = 'https://identifier.overheid.nl/tooi/def/ont/'">
+			  <xsl:value-of select="localName" />
+			</xsl:when>
+			<xsl:when test="nameSpace = 'https://identifier.overheid.nl/tooi/def/wl/'">
+			  <xsl:value-of select="localName" />
+			</xsl:when>
+			<xsl:otherwise>
+			  <xsl:variable name="uri" select="replace(uri,':.*$', '_')"/>
+			  <xsl:value-of select="concat($uri, localName)"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:variable>
 	
 <!-- 	<xsl:value-of select="ancestor::section/uri"/> -->
