@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.sparna.rdf.shacl</groupId>
   <artifactId>shacl-play-app</artifactId>
+  <version>0.6.2-librit</version>
   <packaging>jar</packaging>
   <name>SHACL Play command-line app</name>
 	
