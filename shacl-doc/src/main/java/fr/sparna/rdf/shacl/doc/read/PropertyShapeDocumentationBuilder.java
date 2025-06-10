@@ -12,6 +12,8 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.XSD;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.sparna.rdf.shacl.doc.ConstraintValueReader;
 import fr.sparna.rdf.shacl.doc.NodeShape;
@@ -22,6 +24,8 @@ import fr.sparna.rdf.shacl.doc.model.Link;
 
 
 public class PropertyShapeDocumentationBuilder {
+
+	private static Logger log = LoggerFactory.getLogger(PropertyShapeDocumentationBuilder.class);
 
 	public static PropertyShapeDocumentation build(
 			PropertyShape propertyShape,
@@ -50,9 +54,11 @@ public class PropertyShapeDocumentationBuilder {
 		//proprieteDoc.setPropertyUri(propertyShape.getShPath().isURIResource()?propertyShape.getShPath().getURI():null);
 
 		// URI
-		String shortUri = propertyShape.getResource().getModel().shortForm(propertyShape.getResource().getURI());
-		proprieteDoc.setUri(shortUri);
-
+		String uri = propertyShape.getResource().getURI();
+		if (uri != null) {
+			String shortUri = propertyShape.getResource().getModel().shortForm(uri);
+			proprieteDoc.setUri(shortUri);
+		}
 		// URI in the raport
 		proprieteDoc.setPropertyUri(buildPathLink(propertyShape));
 
@@ -107,6 +113,7 @@ public class PropertyShapeDocumentationBuilder {
 	}
 
 	public static String selectLabel(PropertyShape prop, Model owlModel, String lang) {
+		log.info("Going to handle" + prop.getLocalName());
 		// if we have a sh:name, take it
 		if(prop.getShName() != null) {
 			return render(prop.getShName(), true);
